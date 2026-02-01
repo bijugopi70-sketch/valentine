@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine</title>
+
+<style>
+:root {
+  --pink1: #ff758c;
+  --pink2: #ff7eb3;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, var(--pink1), var(--pink2));
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+h1 {
+  font-size: 2.6em;
+  margin-bottom: 30px;
+  animation: floatText 3s ease-in-out infinite;
+}
+
+.buttons {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 16px 36px;
+  font-size: 18px;
+  border: none;
+  border-radius: 14px;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,.25);
+}
+
+#yesBtn {
+  background: #2ecc71;
+  color: white;
+}
+
+#noBtn {
+  background: #e74c3c;
+  color: white;
+  position: absolute;
+}
+
+/* Link */
+a {
+  color: white;
+  font-size: 18px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: .8;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(.8); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floatText {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Can you be my Valentine, Nikita? ❤️</h1>
+
+  <div class="buttons">
+    <button id="yesBtn" onclick="celebrate()">YES</button>
+    <button id="noBtn">NO</button>
+  </div>
+
+  <a href="file:///C:/Users/biju/Documents/val.html">press here</a>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseenter", () => {
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 80);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+});
+
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 8000);
+}, 400);
+
+function celebrate() {
+  document.body.innerHTML =
+    "<h1>🎉 She said YES! 🎉</h1><h2>Happy Valentine’s Day ❤️</h2>";
+}
+</script>
+
+</body>
+</html>
